@@ -82,6 +82,7 @@ const menuItems = [
     }
 ];
 
+<<<<<<< HEAD
 // Enhanced menu functionality with animations and interactions
 function displayMenuItems(menuItems) {
     let displayMenu = menuItems.map((item, index) => {
@@ -94,6 +95,15 @@ function displayMenuItems(menuItems) {
                         <i class="fas fa-eye"></i> Quick View
                     </button>
                 </div>
+=======
+// Display menu items
+function displayMenuItems(menuItems) {
+    let displayMenu = menuItems.map(item => {
+        return `
+        <div class="menu-item" data-category="${item.category}">
+            <div class="menu-item-img">
+                <img src="${item.img}" alt="${item.title}">
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
             </div>
             <div class="menu-item-content">
                 <div class="menu-item-header">
@@ -101,9 +111,12 @@ function displayMenuItems(menuItems) {
                     <span class="menu-item-price">$${item.price.toFixed(2)}</span>
                 </div>
                 <p class="menu-item-desc">${item.desc}</p>
+<<<<<<< HEAD
                 <button class="btn btn-primary btn-small" onclick="addToOrder(${item.id})">
                     <i class="fas fa-plus"></i> Add to Order
                 </button>
+=======
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
             </div>
         </div>
         `;
@@ -112,7 +125,11 @@ function displayMenuItems(menuItems) {
     displayMenu = displayMenu.join('');
     menuGrid.innerHTML = displayMenu;
     
+<<<<<<< HEAD
     // Add staggered animation to menu items
+=======
+    // Add animation to menu items
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
     const menuItemElements = document.querySelectorAll('.menu-item');
     menuItemElements.forEach((item, index) => {
         setTimeout(() => {
@@ -122,7 +139,11 @@ function displayMenuItems(menuItems) {
     });
 }
 
+<<<<<<< HEAD
 // Enhanced filter menu with smooth transitions
+=======
+// Filter menu items
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
 function filterMenu() {
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -132,6 +153,7 @@ function filterMenu() {
             filterBtns.forEach(btn => btn.classList.remove('active'));
             e.currentTarget.classList.add('active');
             
+<<<<<<< HEAD
             // Add loading state
             menuGrid.classList.add('loading');
             
@@ -235,6 +257,17 @@ function showNotification(message) {
             }, 300);
         }, 3000);
     }, 100);
+=======
+            // Filter menu items
+            if (category === 'all') {
+                displayMenuItems(menuItems);
+            } else {
+                const filteredItems = menuItems.filter(item => item.category === category);
+                displayMenuItems(filteredItems);
+            }
+        });
+    });
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
 }
 
 // Initialize

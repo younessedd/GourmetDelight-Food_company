@@ -274,6 +274,7 @@ a {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+<<<<<<< HEAD
 /* About Section */
 .about-content {
     display: grid;
@@ -602,6 +603,8 @@ a {
     font-weight: 500;
 }
 
+=======
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
 /* Gallery Section */
 .gallery-grid {
     display: grid;
@@ -681,6 +684,7 @@ a {
     color: var(--primary-color);
 }
 
+<<<<<<< HEAD
 /* Location Section */
 .location-content {
     display: grid;
@@ -924,6 +928,8 @@ a {
     }
 }
 
+=======
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
 /* Contact Form */
 .contact-content {
     display: grid;
@@ -1052,6 +1058,7 @@ a {
     transform: translateY(-2px);
 }
 
+<<<<<<< HEAD
 /* Enhanced Responsive Styles */
 @media (max-width: 1200px) {
     .container {
@@ -1068,6 +1075,9 @@ a {
     }
 }
 
+=======
+/* Responsive Styles */
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
 @media (max-width: 992px) {
     .hero-title {
         font-size: 3rem;
@@ -1090,6 +1100,7 @@ a {
     .about-image {
         order: -1;
     }
+<<<<<<< HEAD
     
     .location-content {
         grid-template-columns: 1fr;
@@ -1177,6 +1188,11 @@ a {
         font-size: 0.9rem;
     }
     
+=======
+}
+
+@media (max-width: 768px) {
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
     .nav-menu {
         position: fixed;
         top: 0;
@@ -1219,6 +1235,7 @@ a {
     
     .gallery-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+<<<<<<< HEAD
         gap: 15px;
     }
     
@@ -1243,10 +1260,13 @@ a {
     
     .map {
         height: 300px;
+=======
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
     }
 }
 
 @media (max-width: 576px) {
+<<<<<<< HEAD
     .section-padding {
         padding: 60px 0;
     }
@@ -1269,16 +1289,32 @@ a {
     
     .section-subtitle {
         font-size: 1rem;
+=======
+    .menu-grid {
+        grid-template-columns: 1fr;
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
     }
     
     .gallery-grid {
         grid-template-columns: 1fr;
     }
     
+<<<<<<< HEAD
+=======
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
     .btn {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
+<<<<<<< HEAD
     
     .menu-item-content {
         padding: 15px;
@@ -1381,4 +1417,6 @@ a {
         opacity: 1;
         transform: translateX(0);
     }
+=======
+>>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
 }
