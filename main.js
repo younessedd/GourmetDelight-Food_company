@@ -2,88 +2,243 @@
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
-const themeToggle = document.querySelector('.theme-toggle');
 const backToTopBtn = document.querySelector('.back-to-top');
 const menuGrid = document.querySelector('.menu-grid');
 const filterBtns = document.querySelectorAll('.filter-btn');
-const galleryGrid = document.querySelector('.gallery-grid');
-const lightbox = document.querySelector('.lightbox');
-const lightboxImg = document.querySelector('.lightbox-img');
-const closeLightbox = document.querySelector('.close-lightbox');
 const contactForm = document.getElementById('contactForm');
 const successMessage = document.querySelector('.success-message');
 const closeMessage = document.querySelector('.close-message');
 
+// Hero Slider Elements
+const heroSlider = document.querySelector('.hero-slider');
+const heroSlides = document.querySelectorAll('.hero-slide');
+const heroPrev = document.querySelector('.hero-prev');
+const heroNext = document.querySelector('.hero-next');
+const heroIndicators = document.querySelector('.hero-indicators');
+
+let currentSlide = 0;
+let slideInterval;
+
 // Menu Data
 const menuItems = [
+    // Starters
     {
         id: 1,
         title: 'Bruschetta',
         category: 'starters',
         price: 8.99,
-        img: 'https://images.unsplash.com/photo-1551183053-bf91a1f81111?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80',
-        desc: 'Toasted bread topped with tomatoes, garlic, and fresh basil.'
+        img: 'images/bruschetta.jpg',
+        desc: 'Toasted bread topped with fresh tomatoes, garlic, basil, and extra virgin olive oil.'
     },
     {
         id: 2,
         title: 'Caesar Salad',
         category: 'starters',
         price: 10.99,
-        img: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80',
+        img: 'images/caesar-salad.jpg',
         desc: 'Crisp romaine lettuce with Caesar dressing, croutons, and parmesan.'
     },
     {
         id: 3,
-        title: 'Grilled Salmon',
-        category: 'mains',
-        price: 24.99,
-        img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-        desc: 'Fresh salmon fillet grilled to perfection with lemon butter sauce.'
+        title: 'Spinach Artichoke Dip',
+        category: 'starters',
+        price: 9.99,
+        img: 'images/spinach-artichoke-dip.jpg',
+        desc: 'Creamy spinach and artichoke dip served with warm pita bread.'
     },
     {
         id: 4,
-        title: 'Beef Tenderloin',
-        category: 'mains',
-        price: 32.99,
-        img: 'https://images.unsplash.com/photo-1546964124-0cce068f3bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-        desc: 'Premium cut beef tenderloin with roasted vegetables and red wine reduction.'
+        title: 'Stuffed Mushrooms',
+        category: 'starters',
+        price: 11.99,
+        img: 'images/stuffed-mushrooms.jpg',
+        desc: 'Button mushrooms stuffed with herbs, cheese, and breadcrumbs.'
     },
     {
         id: 5,
-        title: 'Chocolate Lava Cake',
-        category: 'desserts',
-        price: 8.99,
-        img: 'https://images.unsplash.com/photo-1571115177091-12b7d5a9e3f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80',
-        desc: 'Warm chocolate cake with a molten center, served with vanilla ice cream.'
+        title: 'Shrimp Cocktail',
+        category: 'starters',
+        price: 12.99,
+        img: 'images/shrimp-cocktail.jpg',
+        desc: 'Chilled shrimp with cocktail sauce, lemon, and fresh herbs.'
     },
     {
         id: 6,
-        title: 'Tiramisu',
-        category: 'desserts',
+        title: 'Garlic Bread',
+        category: 'starters',
         price: 7.99,
-        img: 'https://images.unsplash.com/photo-1571870180611-1831a7d3a9e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-        desc: 'Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.'
+        img: 'images/garlic-bread.jpg',
+        desc: 'Warm garlic bread with herbs and melted mozzarella cheese.'
     },
+    
+    // Main Courses
     {
         id: 7,
-        title: 'Fresh Orange Juice',
-        category: 'drinks',
-        price: 4.99,
-        img: 'https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-        desc: 'Freshly squeezed orange juice, served chilled.'
+        title: 'Grilled Salmon',
+        category: 'mains',
+        price: 24.99,
+        img: 'images/grilled-salmon.jpg',
+        desc: 'Fresh salmon fillet grilled to perfection with lemon butter sauce.'
     },
     {
         id: 8,
+        title: 'Beef Tenderloin',
+        category: 'mains',
+        price: 32.99,
+        img: 'images/beef-tenderloin-alt.jpg',
+        desc: 'Premium cut beef tenderloin with roasted vegetables and red wine reduction.'
+    },
+    {
+        id: 9,
+        title: 'Chicken Parmesan',
+        category: 'mains',
+        price: 22.99,
+        img: 'images/fried-chicken.jpg',
+        desc: 'Breaded chicken breast topped with marinara sauce and melted mozzarella.'
+    },
+    {
+        id: 10,
+        title: 'Pasta Carbonara',
+        category: 'mains',
+        price: 18.99,
+        img: 'images/pasta.jpg',
+        desc: 'Classic Italian pasta with eggs, pecorino cheese, and crispy pancetta.'
+    },
+    {
+        id: 11,
+        title: 'Lobster Tail',
+        category: 'mains',
+        price: 36.99,
+        img: 'images/sushi.jpg',
+        desc: 'Fresh lobster tail with garlic butter and seasonal vegetables.'
+    },
+    {
+        id: 12,
+        title: 'Vegetable Stir Fry',
+        category: 'mains',
+        price: 16.99,
+        img: 'images/tacos.jpg',
+        desc: 'Fresh seasonal vegetables stir-fried with ginger and soy sauce.'
+    },
+    {
+        id: 13,
+        title: 'Ribeye Steak',
+        category: 'mains',
+        price: 38.99,
+        img: 'images/beef-tenderloin-alt.jpg',
+        desc: 'Premium ribeye steak grilled to your preference with roasted garlic.'
+    },
+    
+    // Desserts
+    {
+        id: 14,
+        title: 'Chocolate Lava Cake',
+        category: 'desserts',
+        price: 8.99,
+        img: 'images/pancakes.jpg',
+        desc: 'Warm chocolate cake with a molten center, served with vanilla ice cream.'
+    },
+    {
+        id: 15,
+        title: 'Tiramisu',
+        category: 'desserts',
+        price: 7.99,
+        img: 'images/chocolate-mousse.jpg',
+        desc: 'Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.'
+    },
+    {
+        id: 16,
+        title: 'Cheesecake',
+        category: 'desserts',
+        price: 9.99,
+        img: 'images/burger.jpg',
+        desc: 'New York style cheesecake with berry compote and fresh cream.'
+    },
+    {
+        id: 17,
+        title: 'Crème Brûlée',
+        category: 'desserts',
+        price: 8.99,
+        img: 'images/fresh-orange-juice.jpg',
+        desc: 'Classic French dessert with caramelized sugar top and creamy vanilla custard.'
+    },
+    {
+        id: 18,
+        title: 'Apple Pie',
+        category: 'desserts',
+        price: 7.99,
+        img: 'images/pancakes.jpg',
+        desc: 'Traditional apple pie with cinnamon-spiced apples and flaky crust.'
+    },
+    {
+        id: 19,
+        title: 'Chocolate Mousse',
+        category: 'desserts',
+        price: 6.99,
+        img: 'images/chocolate-mousse.jpg',
+        desc: 'Light and airy chocolate mousse topped with fresh berries and whipped cream.'
+    },
+    {
+        id: 20,
+        title: 'Ice Cream Sundae',
+        category: 'desserts',
+        price: 5.99,
+        img: 'images/ice-cream-sundae.jpg',
+        desc: 'Three scoops of premium ice cream with hot fudge, nuts, and cherry.'
+    },
+    
+    // Drinks
+    {
+        id: 21,
+        title: 'Fresh Orange Juice',
+        category: 'drinks',
+        price: 4.99,
+        img: 'images/fresh-orange-juice.jpg',
+        desc: 'Freshly squeezed orange juice, served chilled with ice.'
+    },
+    {
+        id: 22,
         title: 'Iced Tea',
         category: 'drinks',
         price: 3.99,
-        img: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1430&q=80',
-        desc: 'Freshly brewed iced tea with lemon.'
+        img: 'images/lemonade.jpg',
+        desc: 'Freshly brewed iced tea with lemon and fresh mint.'
+    },
+    {
+        id: 23,
+        title: 'Coffee Latte',
+        category: 'drinks',
+        price: 5.99,
+        img: 'images/chocolate-mousse.jpg',
+        desc: 'Espresso with steamed milk foam, topped with latte art.'
+    },
+    {
+        id: 24,
+        title: 'Mojito',
+        category: 'drinks',
+        price: 8.99,
+        img: 'images/pizza.jpg',
+        desc: 'Fresh mint, lime, sugar, and white rum muddled with soda water.'
+    },
+    {
+        id: 25,
+        title: 'Smoothie Bowl',
+        category: 'drinks',
+        price: 7.99,
+        img: 'images/fresh-orange-juice.jpg',
+        desc: 'Blend of mixed berries, banana, yogurt, and honey with granola topping.'
+    },
+    {
+        id: 26,
+        title: 'Lemonade',
+        category: 'drinks',
+        price: 4.99,
+        img: 'images/lemonade-new.jpg',
+        desc: 'Fresh squeezed lemonade with mint and natural cane sugar.'
     }
 ];
 
-<<<<<<< HEAD
-// Enhanced menu functionality with animations and interactions
+// Display menu items
 function displayMenuItems(menuItems) {
     let displayMenu = menuItems.map((item, index) => {
         return `
@@ -95,15 +250,6 @@ function displayMenuItems(menuItems) {
                         <i class="fas fa-eye"></i> Quick View
                     </button>
                 </div>
-=======
-// Display menu items
-function displayMenuItems(menuItems) {
-    let displayMenu = menuItems.map(item => {
-        return `
-        <div class="menu-item" data-category="${item.category}">
-            <div class="menu-item-img">
-                <img src="${item.img}" alt="${item.title}">
->>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
             </div>
             <div class="menu-item-content">
                 <div class="menu-item-header">
@@ -111,12 +257,6 @@ function displayMenuItems(menuItems) {
                     <span class="menu-item-price">$${item.price.toFixed(2)}</span>
                 </div>
                 <p class="menu-item-desc">${item.desc}</p>
-<<<<<<< HEAD
-                <button class="btn btn-primary btn-small" onclick="addToOrder(${item.id})">
-                    <i class="fas fa-plus"></i> Add to Order
-                </button>
-=======
->>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
             </div>
         </div>
         `;
@@ -125,11 +265,7 @@ function displayMenuItems(menuItems) {
     displayMenu = displayMenu.join('');
     menuGrid.innerHTML = displayMenu;
     
-<<<<<<< HEAD
     // Add staggered animation to menu items
-=======
-    // Add animation to menu items
->>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
     const menuItemElements = document.querySelectorAll('.menu-item');
     menuItemElements.forEach((item, index) => {
         setTimeout(() => {
@@ -139,11 +275,7 @@ function displayMenuItems(menuItems) {
     });
 }
 
-<<<<<<< HEAD
-// Enhanced filter menu with smooth transitions
-=======
 // Filter menu items
->>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
 function filterMenu() {
     filterBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -153,20 +285,13 @@ function filterMenu() {
             filterBtns.forEach(btn => btn.classList.remove('active'));
             e.currentTarget.classList.add('active');
             
-<<<<<<< HEAD
-            // Add loading state
-            menuGrid.classList.add('loading');
-            
-            // Filter menu items with animation
-            setTimeout(() => {
-                if (category === 'all') {
-                    displayMenuItems(menuItems);
-                } else {
-                    const filteredItems = menuItems.filter(item => item.category === category);
-                    displayMenuItems(filteredItems);
-                }
-                menuGrid.classList.remove('loading');
-            }, 300);
+            // Filter menu items
+            if (category === 'all') {
+                displayMenuItems(menuItems);
+            } else {
+                const filteredItems = menuItems.filter(item => item.category === category);
+                displayMenuItems(filteredItems);
+            }
         });
     });
 }
@@ -189,9 +314,6 @@ function viewMenuItem(id) {
                     <p class="price">$${item.price.toFixed(2)}</p>
                     <p class="description">${item.desc}</p>
                     <div class="modal-actions">
-                        <button class="btn btn-primary" onclick="addToOrder(${item.id})">
-                            <i class="fas fa-plus"></i> Add to Order
-                        </button>
                         <button class="btn btn-outline" onclick="closeMenuModal()">
                             Close
                         </button>
@@ -257,26 +379,130 @@ function showNotification(message) {
             }, 300);
         }, 3000);
     }, 100);
-=======
-            // Filter menu items
-            if (category === 'all') {
-                displayMenuItems(menuItems);
-            } else {
-                const filteredItems = menuItems.filter(item => item.category === category);
-                displayMenuItems(filteredItems);
-            }
+}
+
+// Hero Slider Functions
+function initHeroSlider() {
+    if (!heroSlider || heroSlides.length === 0) return;
+
+    // Ensure first slide is immediately visible
+    if (heroSlides.length > 0) {
+        heroSlides[0].classList.add('active');
+        const firstSlideContent = heroSlides[0].querySelector('.hero-content');
+        if (firstSlideContent) {
+            firstSlideContent.style.opacity = '1';
+            firstSlideContent.style.visibility = 'visible';
+        }
+    }
+
+    // Create indicators
+    createIndicators();
+    
+    // Show first slide (redundant but ensures consistency)
+    showSlide(0);
+    
+    // Start auto-play
+    startSlideShow();
+    
+    // Event listeners
+    if (heroPrev) {
+        heroPrev.addEventListener('click', () => {
+            prevSlide();
+            resetSlideShow();
         });
+    }
+    
+    if (heroNext) {
+        heroNext.addEventListener('click', () => {
+            nextSlide();
+            resetSlideShow();
+        });
+    }
+    
+    // Pause on hover
+    heroSlider.addEventListener('mouseenter', stopSlideShow);
+    heroSlider.addEventListener('mouseleave', startSlideShow);
+}
+
+function createIndicators() {
+    if (!heroIndicators) return;
+    
+    heroIndicators.innerHTML = '';
+    heroSlides.forEach((_, index) => {
+        const indicator = document.createElement('button');
+        indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+        indicator.addEventListener('click', () => {
+            showSlide(index);
+            resetSlideShow();
+        });
+        heroIndicators.appendChild(indicator);
     });
->>>>>>> 1e6f1d4d2c34d7c20c6b6d60493853007c129b8e
+}
+
+function showSlide(index) {
+    // Hide all slides
+    heroSlides.forEach(slide => slide.classList.remove('active'));
+    
+    // Remove active class from all indicators
+    const indicators = heroIndicators?.querySelectorAll('.indicator');
+    indicators?.forEach(indicator => indicator.classList.remove('active'));
+    
+    // Show current slide
+    heroSlides[index].classList.add('active');
+    if (indicators) indicators[index].classList.add('active');
+    
+    currentSlide = index;
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % heroSlides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+    showSlide(currentSlide);
+}
+
+function startSlideShow() {
+    stopSlideShow();
+    slideInterval = setInterval(nextSlide, 5000);
+}
+
+function stopSlideShow() {
+    if (slideInterval) {
+        clearInterval(slideInterval);
+    }
+}
+
+function resetSlideShow() {
+    stopSlideShow();
+    startSlideShow();
 }
 
 // Initialize
 function init() {
+    // Add loading class to hero initially
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.classList.add('loading');
+    }
+    
+    // Initialize hero slider
+    initHeroSlider();
+    
     // Load menu items
     displayMenuItems(menuItems);
     
     // Initialize filter functionality
     filterMenu();
+    
+    // Remove loading class after everything is initialized
+    setTimeout(() => {
+        if (heroSection) {
+            heroSection.classList.remove('loading');
+        }
+    }, 100);
     
     // Mobile menu toggle
     if (navToggle) {
@@ -293,19 +519,6 @@ function init() {
             navMenu.classList.remove('active');
         });
     });
-    
-    // Theme toggle
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.setAttribute('data-theme', 
-                document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-            );
-            // Toggle between sun and moon icons
-            const icon = themeToggle.querySelector('i');
-            icon.classList.toggle('fa-sun');
-            icon.classList.toggle('fa-moon');
-        });
-    }
     
     // Back to top button
     window.addEventListener('scroll', () => {
@@ -334,41 +547,6 @@ function init() {
                     behavior: 'smooth'
                 });
             }
-        });
-    });
-}
-
-// Gallery Images
-const galleryImages = [
-    'https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80',
-    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80',
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
-    'https://images.unsplash.com/photo-1555396273-8b3f41d5a50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80',
-    'https://images.unsplash.com/photo-1555396273-8b3f41d5a50f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80',
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'
-];
-
-// Display gallery images
-function displayGalleryImages() {
-    const galleryHTML = galleryImages.map((img, index) => {
-        return `
-        <div class="gallery-item" style="background-image: url('${img}');" data-index="${index}">
-            <div class="gallery-overlay">
-                <i class="fas fa-search-plus"></i>
-            </div>
-        </div>
-        `;
-    }).join('');
-    
-    galleryGrid.innerHTML = galleryHTML;
-    
-    // Add click event to gallery items
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', (e) => {
-            const imgIndex = item.getAttribute('data-index');
-            lightboxImg.src = galleryImages[imgIndex];
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
         });
     });
 }
@@ -430,23 +608,6 @@ function closeSuccessMessage() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     init();
-    
-    // Initialize gallery
-    displayGalleryImages();
-    
-    // Close lightbox
-    closeLightbox.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-    
-    // Close lightbox when clicking outside the image
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
     
     // Handle contact form submission
     if (contactForm) {

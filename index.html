@@ -24,26 +24,45 @@
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#menu" class="nav-link">Menu</a></li>
-                <li><a href="#gallery" class="nav-link">Gallery</a></li>
                 <li><a href="#location" class="nav-link">Location</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <button class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Experience Culinary Excellence</h1>
-                <p class="hero-subtitle">Where every dish tells a story</p>
-                <a href="#menu" class="btn btn-primary">Explore Our Menu</a>
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('images/grilled-salmon.jpg');">
+                <div class="hero-content">
+                    <h1 class="hero-title">Experience Culinary Excellence</h1>
+                    <p class="hero-subtitle">Where every dish tells a story</p>
+                    <a href="#menu" class="btn btn-primary">Explore Our Menu</a>
+                </div>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide" style="background-image: url('images/pasta.jpg');">
+                <div class="hero-content">
+                    <h1 class="hero-title">Fresh Ingredients, Expertly Prepared</h1>
+                    <p class="hero-subtitle">From farm to table with love</p>
+                    <a href="#menu" class="btn btn-primary">View Specialties</a>
+                </div>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide" style="background-image: url('images/pancakes.jpg');">
+                <div class="hero-content">
+                    <h1 class="hero-title">Artisanal Desserts & Coffee</h1>
+                    <p class="hero-subtitle">Sweet endings to perfect meals</p>
+                    <a href="#menu" class="btn btn-primary">Explore Desserts</a>
+                </div>
+                <div class="hero-overlay"></div>
             </div>
         </div>
-        <div class="hero-overlay"></div>
+        <div class="hero-controls">
+            <button class="hero-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="hero-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="hero-indicators"></div>
     </section>
 
     <!-- About Section -->
@@ -62,7 +81,7 @@
                     <a href="#contact" class="btn btn-outline">Book a Table</a>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurant interior">
+                    <img src="images/burger.jpg" alt="Restaurant interior">
                 </div>
             </div>
         </div>
@@ -84,19 +103,6 @@
             </div>
             <div class="menu-grid">
                 <!-- Menu items will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery section-padding" id="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Food Gallery</h2>
-                <p class="section-subtitle">A taste of what we offer</p>
-            </div>
-            <div class="gallery-grid">
-                <!-- Gallery items will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -234,12 +240,6 @@
     <a href="#" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </a>
-
-    <!-- Lightbox for Gallery -->
-    <div class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <img src="" alt="Gallery Image" class="lightbox-img">
-    </div>
 
     <!-- Success Message -->
     <div class="success-message">
