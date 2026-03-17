@@ -267,6 +267,28 @@ a {
     border-bottom: 1px solid rgba(197, 157, 95, 0.2);
 }
 
+/* Arabic Language Support */
+body[dir="rtl"] {
+    direction: rtl;
+}
+
+body[dir="rtl"] .nav-menu {
+    direction: ltr;
+}
+
+body[dir="rtl"] .hero-content {
+    direction: rtl;
+}
+
+body[dir="rtl"] .lang-dropdown {
+    left: 0;
+    right: auto;
+}
+
+body[dir="rtl"] .lang-option {
+    text-align: right;
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;

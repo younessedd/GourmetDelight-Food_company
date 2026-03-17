@@ -724,8 +724,19 @@ function switchLanguage(lang) {
         console.log('Language display updated to:', lang.toUpperCase());
     }
     
+    // Handle RTL/LTR direction for Arabic
+    if (lang === 'ar') {
+        document.body.setAttribute('dir', 'rtl');
+        document.body.setAttribute('lang', 'ar');
+        console.log('RTL direction set for Arabic');
+    } else {
+        document.body.setAttribute('dir', 'ltr');
+        document.body.setAttribute('lang', lang);
+        console.log('LTR direction set for', lang);
+    }
+    
     // Update all elements with translation attributes
-    const elements = document.querySelectorAll('[data-en][data-fr]');
+    const elements = document.querySelectorAll('[data-en][data-fr][data-ar]');
     console.log('Found translatable elements:', elements.length);
     
     elements.forEach(element => {

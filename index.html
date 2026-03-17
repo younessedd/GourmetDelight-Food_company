@@ -73,11 +73,11 @@
                 <span class="bar"></span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active" data-en="Home" data-fr="Accueil">Home</a></li>
-                <li><a href="#about" class="nav-link" data-en="About" data-fr="À propos">About</a></li>
-                <li><a href="#menu" class="nav-link" data-en="Menu" data-fr="Menu">Menu</a></li>
-                <li><a href="#location" class="nav-link" data-en="Location" data-fr="Emplacement">Location</a></li>
-                <li><a href="#contact" class="nav-link" data-en="Contact" data-fr="Contact">Contact</a></li>
+                <li><a href="#home" class="nav-link active" data-en="Home" data-fr="Accueil" data-ar="الرئيسية">Home</a></li>
+                <li><a href="#about" class="nav-link" data-en="About" data-fr="À propos" data-ar="من نحن">About</a></li>
+                <li><a href="#menu" class="nav-link" data-en="Menu" data-fr="Menu" data-ar="القائمة">Menu</a></li>
+                <li><a href="#location" class="nav-link" data-en="Location" data-fr="Emplacement" data-ar="الموقع">Location</a></li>
+                <li><a href="#contact" class="nav-link" data-en="Contact" data-fr="Contact" data-ar="اتصل بنا">Contact</a></li>
             </ul>
             <button class="lang-btn" aria-label="Select language" aria-expanded="false">
                 <i class="fas fa-globe"></i>
@@ -87,6 +87,7 @@
             <div class="lang-dropdown">
                 <button class="lang-option" data-lang="en">English</button>
                 <button class="lang-option" data-lang="fr">Français</button>
+                <button class="lang-option" data-lang="ar">العربية</button>
             </div>
         </div>
     </nav>
@@ -96,11 +97,11 @@
         <div class="hero-slider">
             <div class="hero-slide active" style="background-image: url('images/pizza.jpg');">
                 <div class="hero-content">
-                    <h1 class="hero-title" data-en="GourmetDelight" data-fr="GourmetDelight">GourmetDelight</h1>
-                    <p class="hero-subtitle" data-en="Experience Culinary Excellence" data-fr="Découvrez l'Excellence Culinaire">Experience Culinary Excellence</p>
+                    <h1 class="hero-title" data-en="GourmetDelight" data-fr="GourmetDelight" data-ar="جورميت ديليت">GourmetDelight</h1>
+                    <p class="hero-subtitle" data-en="Experience Culinary Excellence" data-fr="Découvrez l'Excellence Culinaire" data-ar="استمتع بالتميز الطهوي">Experience Culinary Excellence</p>
                     <div class="hero-buttons">
-                        <a href="#menu" class="btn btn-primary" data-en="Explore Our Menu" data-fr="Explorez Notre Menu">Explore Our Menu</a>
-                        <a href="#contact" class="btn btn-secondary" data-en="Book a Table" data-fr="Réserver une Table">Book a Table</a>
+                        <a href="#menu" class="btn btn-primary" data-en="Explore Our Menu" data-fr="Explorez Notre Menu" data-ar="استكشف قائمتنا">Explore Our Menu</a>
+                        <a href="#contact" class="btn btn-secondary" data-en="Book a Table" data-fr="Réserver une Table" data-ar="احجز طاولة">Book a Table</a>
                     </div>
                 </div>
                 <div class="hero-overlay"></div>
@@ -358,7 +359,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-    <script src="main.js?v=7"></script>
+    <script src="main.js?v=8"></script>
     <script>
         // Backup language selector initialization
         document.addEventListener('DOMContentLoaded', function() {
@@ -402,8 +403,17 @@
                                 langCurrent.textContent = selectedLang.toUpperCase();
                             }
                             
+                            // Handle RTL/LTR for Arabic
+                            if (selectedLang === 'ar') {
+                                document.body.setAttribute('dir', 'rtl');
+                                document.body.setAttribute('lang', 'ar');
+                            } else {
+                                document.body.setAttribute('dir', 'ltr');
+                                document.body.setAttribute('lang', selectedLang);
+                            }
+                            
                             // Update translations
-                            const elements = document.querySelectorAll('[data-en][data-fr]');
+                            const elements = document.querySelectorAll('[data-en][data-fr][data-ar]');
                             elements.forEach(function(element) {
                                 const translation = element.getAttribute('data-' + selectedLang);
                                 if (translation) {
