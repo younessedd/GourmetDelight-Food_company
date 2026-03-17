@@ -751,6 +751,15 @@ function switchLanguage(lang) {
         }
     });
     
+    // Update filter buttons specifically
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        const translation = btn.getAttribute(`data-${lang}`);
+        if (translation) {
+            btn.textContent = translation;
+        }
+    });
+    
     // Save language preference
     localStorage.setItem('selectedLanguage', lang);
     console.log('Language preference saved:', lang);
