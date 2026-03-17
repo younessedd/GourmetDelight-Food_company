@@ -360,14 +360,17 @@ function displayMenuItems(items) {
     
     menuGridEl.innerHTML = '';
     
+    // Get current language for Quick View button text
+    const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+    let quickViewText = 'Quick View';
+    if (currentLang === 'fr') quickViewText = 'Aperçu Rapide';
+    else if (currentLang === 'ar') quickViewText = 'عرض سريع';
+    
     items.forEach(item => {
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item fade-in';
         menuItem.setAttribute('data-category', item.category);
         menuItem.setAttribute('data-id', item.id);
-        
-        // Get current language
-        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
         
         // Select appropriate title and description
         let title = item.title;
@@ -386,7 +389,7 @@ function displayMenuItems(items) {
                 <img src="${item.img}" alt="${title}" loading="lazy">
                 <div class="menu-item-overlay">
                     <button class="menu-item-btn" onclick="viewMenuItem(${item.id})">
-                        <i class="fas fa-eye"></i> Quick View
+                        <i class="fas fa-eye"></i> ${quickViewText}
                     </button>
                 </div>
             </div>
@@ -438,6 +441,32 @@ function filterMenu() {
 function viewMenuItem(id) {
     const item = menuItems.find(item => item.id === id);
     if (item) {
+        // Get current language
+        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        
+        // Select appropriate title and description
+        let title = item.title;
+        let desc = item.desc;
+        
+        if (currentLang === 'fr' && item.title_fr) {
+            title = item.title_fr;
+            desc = item.desc_fr || desc;
+        } else if (currentLang === 'ar' && item.title_ar) {
+            title = item.title_ar;
+            desc = item.desc_ar || desc;
+        }
+        
+        // Get translated button texts
+        let addToOrderText = 'Add to Order';
+        let closeText = 'Close';
+        if (currentLang === 'fr') {
+            addToOrderText = 'Ajouter à la Commande';
+            closeText = 'Fermer';
+        } else if (currentLang === 'ar') {
+            addToOrderText = 'أضف للطلب';
+            closeText = 'إغلاق';
+        }
+        
         // Create modal for item details
         const modal = document.createElement('div');
         modal.className = 'menu-modal active';
@@ -445,18 +474,18 @@ function viewMenuItem(id) {
             <div class="menu-modal-content">
                 <span class="close-modal">&times;</span>
                 <div class="menu-modal-img">
-                    <img src="${item.img}" alt="${item.title}">
+                    <img src="${item.img}" alt="${title}">
                 </div>
                 <div class="menu-modal-info">
-                    <h2>${item.title}</h2>
+                    <h2>${title}</h2>
                     <p class="price">$${item.price.toFixed(2)}</p>
-                    <p class="description">${item.desc}</p>
+                    <p class="description">${desc}</p>
                     <div class="modal-actions">
                         <button class="btn btn-primary" onclick="addToOrder(${item.id})">
-                            <i class="fas fa-shopping-cart"></i> Add to Order
+                            <i class="fas fa-shopping-cart"></i> ${addToOrderText}
                         </button>
                         <button class="btn btn-secondary" onclick="closeMenuModal()">
-                            Close
+                            ${closeText}
                         </button>
                     </div>
                 </div>
