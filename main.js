@@ -128,13 +128,13 @@ const menuItems = [
         img: 'images/beef-tenderloin-alt.jpg',
         desc: 'Premium cut beef tenderloin with roasted vegetables and red wine reduction.',
         desc_fr: 'Filet de bœuf de qualité supérieure avec légumes rôtis et réduction de vin rouge.',
-        desc_ar: 'قطعة فيليف لحم بقري ممتاز مع خضروات مشوية وصلصة نبيذ أحمر.'
+        desc_ar: 'قطعة فيليف لحم بقري ممتازة مع خضروات مشوية وصلصة نبيذ أحمر.'
     },
     {
         id: 9,
         title: 'Chicken Parmesan',
         title_fr: 'Poulet Parmesan',
-        title_ar: 'دجج بارميزان',
+        title_ar: 'دجاج بارميزان',
         category: 'mains',
         price: 22.99,
         img: 'images/fried-chicken.jpg',
