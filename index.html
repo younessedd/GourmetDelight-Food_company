@@ -358,6 +358,82 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-    <script src="main.js?v=6"></script>
+    <script src="main.js?v=7"></script>
+    <script>
+        // Backup language selector initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Backup language selector initializing...');
+            
+            setTimeout(function() {
+                const langBtn = document.querySelector('.lang-btn');
+                const langDropdown = document.querySelector('.lang-dropdown');
+                const langOptions = document.querySelectorAll('.lang-option');
+                
+                if (langBtn && langDropdown && langOptions.length > 0) {
+                    console.log('Backup: Language elements found, attaching events...');
+                    
+                    // Remove existing listeners
+                    const newLangBtn = langBtn.cloneNode(true);
+                    langBtn.parentNode.replaceChild(newLangBtn, langBtn);
+                    
+                    // Toggle dropdown
+                    newLangBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('Backup: Language button clicked');
+                        langDropdown.classList.toggle('active');
+                        newLangBtn.setAttribute('aria-expanded', langDropdown.classList.contains('active'));
+                    });
+                    
+                    // Handle language selection
+                    langOptions.forEach(function(option) {
+                        const newOption = option.cloneNode(true);
+                        option.parentNode.replaceChild(newOption, option);
+                        
+                        newOption.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const selectedLang = newOption.dataset.lang;
+                            console.log('Backup: Language selected:', selectedLang);
+                            
+                            // Update language display
+                            const langCurrent = document.querySelector('.lang-current');
+                            if (langCurrent) {
+                                langCurrent.textContent = selectedLang.toUpperCase();
+                            }
+                            
+                            // Update translations
+                            const elements = document.querySelectorAll('[data-en][data-fr]');
+                            elements.forEach(function(element) {
+                                const translation = element.getAttribute('data-' + selectedLang);
+                                if (translation) {
+                                    element.textContent = translation;
+                                }
+                            });
+                            
+                            // Save preference
+                            localStorage.setItem('selectedLanguage', selectedLang);
+                            
+                            // Close dropdown
+                            langDropdown.classList.remove('active');
+                            newLangBtn.setAttribute('aria-expanded', 'false');
+                        });
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!newLangBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                            langDropdown.classList.remove('active');
+                            newLangBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    
+                    console.log('Backup: Language selector initialized successfully');
+                } else {
+                    console.warn('Backup: Language selector elements not found');
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>

@@ -658,41 +658,76 @@ function addAnimationClasses() {
 
 // Language Selector Functionality
 function initLanguageSelector() {
-    if (!langBtn || !langDropdown) return;
+    // Re-select elements to ensure they exist
+    const langBtn = document.querySelector('.lang-btn');
+    const langDropdown = document.querySelector('.lang-dropdown');
+    const langOptions = document.querySelectorAll('.lang-option');
+    const langCurrent = document.querySelector('.lang-current');
+    
+    console.log('Language selector elements:', { langBtn, langDropdown, langOptions, langCurrent });
+    
+    if (!langBtn || !langDropdown) {
+        console.warn('Language selector elements not found');
+        return;
+    }
+    
+    // Remove existing listeners to prevent duplicates
+    const newLangBtn = langBtn.cloneNode(true);
+    langBtn.parentNode.replaceChild(newLangBtn, langBtn);
     
     // Toggle dropdown
-    langBtn.addEventListener('click', () => {
+    newLangBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Language button clicked');
         const isOpen = langDropdown.classList.contains('active');
         langDropdown.classList.toggle('active');
-        langBtn.setAttribute('aria-expanded', !isOpen);
+        newLangBtn.setAttribute('aria-expanded', !isOpen);
+        console.log('Dropdown toggled:', !isOpen);
     });
     
     // Handle language selection
     langOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            const selectedLang = option.dataset.lang;
+        const newOption = option.cloneNode(true);
+        option.parentNode.replaceChild(newOption, option);
+        
+        newOption.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const selectedLang = newOption.dataset.lang;
+            console.log('Language selected:', selectedLang);
             switchLanguage(selectedLang);
             langDropdown.classList.remove('active');
-            langBtn.setAttribute('aria-expanded', 'false');
+            newLangBtn.setAttribute('aria-expanded', 'false');
         });
     });
     
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-        if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+        if (!newLangBtn.contains(e.target) && !langDropdown.contains(e.target)) {
             langDropdown.classList.remove('active');
-            langBtn.setAttribute('aria-expanded', 'false');
+            newLangBtn.setAttribute('aria-expanded', 'false');
         }
     });
 }
 
 // Switch language function
 function switchLanguage(lang) {
+    // Re-select elements to ensure they exist
+    const langCurrent = document.querySelector('.lang-current');
+    
+    console.log('Switching to language:', lang);
+    
     // Update current language display
-    langCurrent.textContent = lang.toUpperCase();
+    if (langCurrent) {
+        langCurrent.textContent = lang.toUpperCase();
+        console.log('Language display updated to:', lang.toUpperCase());
+    }
     
     // Update all elements with translation attributes
     const elements = document.querySelectorAll('[data-en][data-fr]');
+    console.log('Found translatable elements:', elements.length);
+    
     elements.forEach(element => {
         const translation = element.getAttribute(`data-${lang}`);
         if (translation) {
@@ -707,6 +742,7 @@ function switchLanguage(lang) {
     
     // Save language preference
     localStorage.setItem('selectedLanguage', lang);
+    console.log('Language preference saved:', lang);
 }
 
 // Load saved language preference
