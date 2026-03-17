@@ -927,6 +927,10 @@ function switchLanguage(lang) {
         }
     });
     
+    // Save language preference FIRST before refreshing menu items
+    localStorage.setItem('selectedLanguage', lang);
+    console.log('Language preference saved:', lang);
+    
     // Refresh menu items to show correct language
     const activeFilter = document.querySelector('.filter-btn.active');
     const currentCategory = activeFilter ? activeFilter.dataset.filter : 'all';
@@ -936,10 +940,6 @@ function switchLanguage(lang) {
         const filteredItems = menuItems.filter(item => item.category === currentCategory);
         displayMenuItems(filteredItems);
     }
-    
-    // Save language preference
-    localStorage.setItem('selectedLanguage', lang);
-    console.log('Language preference saved:', lang);
 }
 
 // Load saved language preference
