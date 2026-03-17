@@ -13,6 +13,12 @@ const successMessage = document.querySelector('.success-message');
 const closeMessage = document.querySelector('.close-message');
 const navbar = document.querySelector('.navbar');
 
+// Language Selector Elements
+const langBtn = document.querySelector('.lang-btn');
+const langDropdown = document.querySelector('.lang-dropdown');
+const langOptions = document.querySelectorAll('.lang-option');
+const langCurrent = document.querySelector('.lang-current');
+
 // Hero Slider Elements
 const heroSlider = document.querySelector('.hero-slider');
 const heroSlides = document.querySelectorAll('.hero-slide');
@@ -650,6 +656,65 @@ function addAnimationClasses() {
     });
 }
 
+// Language Selector Functionality
+function initLanguageSelector() {
+    if (!langBtn || !langDropdown) return;
+    
+    // Toggle dropdown
+    langBtn.addEventListener('click', () => {
+        const isOpen = langDropdown.classList.contains('active');
+        langDropdown.classList.toggle('active');
+        langBtn.setAttribute('aria-expanded', !isOpen);
+    });
+    
+    // Handle language selection
+    langOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const selectedLang = option.dataset.lang;
+            switchLanguage(selectedLang);
+            langDropdown.classList.remove('active');
+            langBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+            langDropdown.classList.remove('active');
+            langBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
+// Switch language function
+function switchLanguage(lang) {
+    // Update current language display
+    langCurrent.textContent = lang.toUpperCase();
+    
+    // Update all elements with translation attributes
+    const elements = document.querySelectorAll('[data-en][data-fr]');
+    elements.forEach(element => {
+        const translation = element.getAttribute(`data-${lang}`);
+        if (translation) {
+            if (element.tagName === 'INPUT' && element.type === 'text' || 
+                element.tagName === 'TEXTAREA') {
+                element.placeholder = translation;
+            } else {
+                element.textContent = translation;
+            }
+        }
+    });
+    
+    // Save language preference
+    localStorage.setItem('selectedLanguage', lang);
+}
+
+// Load saved language preference
+function loadSavedLanguage() {
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    switchLanguage(savedLang);
+}
+
 // Initialize everything when DOM is loaded
 function init() {
     // Initialize hero slider
@@ -681,6 +746,12 @@ function init() {
     
     // Initialize newsletter
     initNewsletter();
+    
+    // Initialize language selector
+    initLanguageSelector();
+    
+    // Load saved language preference
+    loadSavedLanguage();
     
     // Handle contact form submission
     if (contactForm) {
