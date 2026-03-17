@@ -359,7 +359,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-    <script src="main.js?v=12"></script>
+    <script src="main.js?v=13"></script>
     <script>
         // Backup language selector initialization
         document.addEventListener('DOMContentLoaded', function() {
@@ -417,7 +417,21 @@
                             elements.forEach(function(element) {
                                 const translation = element.getAttribute('data-' + selectedLang);
                                 if (translation) {
-                                    element.textContent = translation;
+                                    if (element.tagName === 'INPUT' && element.type === 'text' || 
+                                        element.tagName === 'TEXTAREA') {
+                                        element.placeholder = translation;
+                                    } else {
+                                        element.textContent = translation;
+                                    }
+                                }
+                            });
+                            
+                            // Update form placeholders specifically
+                            const formInputs = document.querySelectorAll('input[data-en-placeholder], textarea[data-en-placeholder]');
+                            formInputs.forEach(function(input) {
+                                const placeholder = input.getAttribute('data-' + selectedLang + '-placeholder');
+                                if (placeholder) {
+                                    input.placeholder = placeholder;
                                 }
                             });
                             
@@ -429,6 +443,19 @@
                                     btn.textContent = translation;
                                 }
                             });
+                            
+                            // Refresh menu items to show correct language
+                            const activeFilter = document.querySelector('.filter-btn.active');
+                            const currentCategory = activeFilter ? activeFilter.dataset.filter : 'all';
+                            if (currentCategory === 'all') {
+                                // Re-display all menu items with correct language
+                                const menuGrid = document.querySelector('.menu-grid');
+                                if (menuGrid) {
+                                    // Force re-render of menu items
+                                    const event = new CustomEvent('refreshMenu');
+                                    document.dispatchEvent(event);
+                                }
+                            }
                             
                             // Save preference
                             localStorage.setItem('selectedLanguage', selectedLang);

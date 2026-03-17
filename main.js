@@ -878,6 +878,15 @@ function switchLanguage(lang) {
         }
     });
     
+    // Update form placeholders specifically
+    const formInputs = document.querySelectorAll('input[data-en-placeholder], textarea[data-en-placeholder]');
+    formInputs.forEach(input => {
+        const placeholder = input.getAttribute(`data-${lang}-placeholder`);
+        if (placeholder) {
+            input.placeholder = placeholder;
+        }
+    });
+    
     // Update filter buttons specifically
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
