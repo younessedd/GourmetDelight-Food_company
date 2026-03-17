@@ -216,24 +216,24 @@
     <section class="contact section-padding" id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">We'd love to hear from you</p>
+                <h2 class="section-title" data-en="Contact Us" data-fr="Contactez-Nous" data-ar="اتصل بنا">Contact Us</h2>
+                <p class="section-subtitle" data-en="We'd love to hear from you" data-fr="Nous aimerions avoir de vos nouvelles" data-ar="نحب أن نسمع منك">We'd love to hear from you</p>
             </div>
             <div class="contact-content">
                 <form id="contactForm" class="contact-form">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="Your Name" data-en-placeholder="Your Name" data-fr-placeholder="Votre Nom" data-ar-placeholder="اسمك" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" data-en-placeholder="Your Email" data-fr-placeholder="Votre Email" data-ar-placeholder="بريدك الإلكتروني" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        <input type="text" id="subject" name="subject" placeholder="Subject" data-en-placeholder="Subject" data-fr-placeholder="Sujet" data-ar-placeholder="الموضوع" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <textarea id="message" name="message" placeholder="Your Message" data-en-placeholder="Your Message" data-fr-placeholder="Votre Message" data-ar-placeholder="رسالتك" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary" data-en="Send Message" data-fr="Envoyer le Message" data-ar="إرسال الرسالة">Send Message</button>
                 </form>
                 <div class="contact-info">
                     <div class="contact-item">
@@ -359,7 +359,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-    <script src="main.js?v=11"></script>
+    <script src="main.js?v=12"></script>
     <script>
         // Backup language selector initialization
         document.addEventListener('DOMContentLoaded', function() {

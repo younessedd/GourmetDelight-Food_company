@@ -71,192 +71,284 @@ const menuItems = [
     {
         id: 4,
         title: 'Stuffed Mushrooms',
+        title_fr: 'Champignons Farcis',
+        title_ar: 'فطر محشي',
         category: 'starters',
         price: 11.99,
         img: 'images/stuffed-mushrooms.jpg',
-        desc: 'Button mushrooms stuffed with herbs, cheese, and breadcrumbs.'
+        desc: 'Button mushrooms stuffed with herbs, cheese, and breadcrumbs.',
+        desc_fr: 'Champignons de Paris farcis aux herbes, fromage et chapelure.',
+        desc_ar: 'فطر أجارون محشي بالأعشاب والجبن وفتات الخبز.'
     },
     {
         id: 5,
         title: 'Shrimp Cocktail',
+        title_fr: 'Cocktail de Crevettes',
+        title_ar: 'كوكتيل الروبيان',
         category: 'starters',
         price: 12.99,
         img: 'images/shrimp-cocktail.jpg',
-        desc: 'Chilled shrimp with cocktail sauce, lemon, and fresh herbs.'
+        desc: 'Chilled shrimp with cocktail sauce, lemon, and fresh herbs.',
+        desc_fr: 'Crevettes refroidies avec sauce cocktail, citron et herbes fraîches.',
+        desc_ar: 'روبيان مبرد مع صلصة الكوكتيل والليمون والأعشاب الطازجة.'
     },
     {
         id: 6,
         title: 'Garlic Bread',
+        title_fr: 'Pain à l\'Ail',
+        title_ar: 'خبز الثوم',
         category: 'starters',
         price: 7.99,
         img: 'images/garlic-bread.jpg',
-        desc: 'Warm garlic bread with herbs and melted mozzarella cheese.'
+        desc: 'Warm garlic bread with herbs and melted mozzarella cheese.',
+        desc_fr: 'Pain à l\'ail chaud avec herbes et fromage mozzarella fondu.',
+        desc_ar: 'خبز ثوم دافئ بالأعشاب وجبن الموتزاريلا المذاب.'
     },
     
     // Main Courses
     {
         id: 7,
         title: 'Grilled Salmon',
+        title_fr: 'Saumon Grillé',
+        title_ar: 'سلمون مشوي',
         category: 'mains',
         price: 24.99,
         img: 'images/grilled-salmon.jpg',
-        desc: 'Fresh salmon fillet grilled to perfection with lemon butter sauce.'
+        desc: 'Fresh salmon fillet grilled to perfection with lemon butter sauce.',
+        desc_fr: 'Filet de saumon frais grillé à la perfection avec sauce au beurre de citron.',
+        desc_ar: 'سمك السلمون الطازج المشوي بشكل مثالي مع صلصة الزبدة والليمون.'
     },
     {
         id: 8,
         title: 'Beef Tenderloin',
+        title_fr: 'Filet de Bœuf',
+        title_ar: 'فيلف لحم البقر',
         category: 'mains',
         price: 32.99,
         img: 'images/beef-tenderloin-alt.jpg',
-        desc: 'Premium cut beef tenderloin with roasted vegetables and red wine reduction.'
+        desc: 'Premium cut beef tenderloin with roasted vegetables and red wine reduction.',
+        desc_fr: 'Filet de bœuf de qualité supérieure avec légumes rôtis et réduction de vin rouge.',
+        desc_ar: 'قطعة فيليف لحم بقري ممتاز مع خضروات مشوية وصلصة نبيذ أحمر.'
     },
     {
         id: 9,
         title: 'Chicken Parmesan',
+        title_fr: 'Poulet Parmesan',
+        title_ar: 'دجج بارميزان',
         category: 'mains',
         price: 22.99,
         img: 'images/fried-chicken.jpg',
-        desc: 'Breaded chicken breast topped with marinara sauce and melted mozzarella.'
+        desc: 'Breaded chicken breast topped with marinara sauce and melted mozzarella.',
+        desc_fr: 'Poitrine de poulet panée avec sauce marinara et mozzarella fondue.',
+        desc_ar: 'صدر دجاج مغطى بالبقسماط مع صلصة مارينارا وجبن الموتزاريلا المذاب.'
     },
     {
         id: 10,
         title: 'Pasta Carbonara',
+        title_fr: 'Pâtes Carbonara',
+        title_ar: 'باستا كاربونارا',
         category: 'mains',
         price: 18.99,
         img: 'images/pasta.jpg',
-        desc: 'Classic Italian pasta with eggs, pecorino cheese, and crispy pancetta.'
+        desc: 'Classic Italian pasta with eggs, pecorino cheese, and crispy pancetta.',
+        desc_fr: 'Pâtes italiennes classiques avec œufs, fromage pecorino et pancetta croustillante.',
+        desc_ar: 'باستا إيطالية كلاسيكية مع البيض وجبن بيكورينو وبانشيتا مقرمشة.'
     },
     {
         id: 11,
         title: 'Lobster Tail',
+        title_fr: 'Queue de Homard',
+        title_ar: 'ذيل جراد البحر',
         category: 'mains',
         price: 36.99,
         img: 'images/sushi.jpg',
-        desc: 'Fresh lobster tail with garlic butter and seasonal vegetables.'
+        desc: 'Fresh lobster tail with garlic butter and seasonal vegetables.',
+        desc_fr: 'Queue de homard fraîche avec beurre d\'ail et légumes de saison.',
+        desc_ar: 'ذيل جراد البحر الطازج مع زبدة الثوم والخضروات الموسمية.'
     },
     {
         id: 12,
         title: 'Vegetable Stir Fry',
+        title_fr: 'Légumes Sautés',
+        title_ar: 'خضروات مقلية',
         category: 'mains',
         price: 16.99,
         img: 'images/pizza.jpg',
-        desc: 'Fresh seasonal vegetables stir-fried with ginger and soy sauce.'
+        desc: 'Fresh seasonal vegetables stir-fried with ginger and soy sauce.',
+        desc_fr: 'Légumes frais de saison sautés au gingembre et sauce soja.',
+        desc_ar: 'خضروات طازجة موسمية مقلية مع الزنجبيل وصلصة الصويا.'
     },
     {
         id: 13,
         title: 'Ribeye Steak',
+        title_fr: 'Steak Ribeye',
+        title_ar: 'شريحة لحم ضلع',
         category: 'mains',
         price: 38.99,
         img: 'images/beef-tenderloin-alt.jpg',
-        desc: 'Premium ribeye steak grilled to your preference with roasted garlic.'
+        desc: 'Premium ribeye steak grilled to your preference with roasted garlic.',
+        desc_fr: 'Steak ribeye premium grillé selon votre préférence avec ail rôti.',
+        desc_ar: 'شريحة لحم ضلع ممتازة مشوية حسب تفضيلك مع ثوم محمر.'
     },
     
     // Desserts
     {
         id: 14,
         title: 'Chocolate Lava Cake',
+        title_fr: 'Gâteau Coulant au Chocolat',
+        title_ar: 'كيك الشوكولاتة الحممي',
         category: 'desserts',
         price: 8.99,
         img: 'images/chocolate-mousse.jpg',
-        desc: 'Warm chocolate cake with a molten center, served with vanilla ice cream.'
+        desc: 'Warm chocolate cake with a molten center, served with vanilla ice cream.',
+        desc_fr: 'Gâteau au chocolat chaud à cœur coulant, servi avec glace à la vanille.',
+        desc_ar: 'كيك شوكولاتا دافئ بقلب سائل، يقدم مع آيس كريم الفانيليا.'
     },
     {
         id: 15,
         title: 'Tiramisu',
+        title_fr: 'Tiramisu',
+        title_ar: 'تيراميسو',
         category: 'desserts',
         price: 7.99,
         img: 'images/ice-cream-sundae.jpg',
-        desc: 'Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.'
+        desc: 'Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.',
+        desc_fr: 'Dessert italien classique avec couches de biscuits à la cuillère imbibés de café et crème mascarpone.',
+        desc_ar: 'حلوى إيطالية كلاسيكية مع طبقات من البسكويت المنقوع بالقهوة وكريمة الماسكاربون.'
     },
     {
         id: 16,
         title: 'Cheesecake',
+        title_fr: 'Cheesecake',
+        title_ar: 'تشيز كيك',
         category: 'desserts',
         price: 9.99,
         img: 'images/pancakes.jpg',
-        desc: 'New York style cheesecake with berry compote and fresh cream.'
+        desc: 'New York style cheesecake with berry compote and fresh cream.',
+        desc_fr: 'Cheesecake style New York avec compote de baies et crème fraîche.',
+        desc_ar: 'تشيز كيك على طراز نيويورك مع مربى التوت وكريمة طازجة.'
     },
     {
         id: 17,
         title: 'Crème Brûlée',
+        title_fr: 'Crème Brûlée',
+        title_ar: 'كريم بروليه',
         category: 'desserts',
         price: 8.99,
         img: 'images/chocolate-mousse.jpg',
-        desc: 'Classic French dessert with caramelized sugar top and creamy vanilla custard.'
+        desc: 'Classic French dessert with caramelized sugar top and creamy vanilla custard.',
+        desc_fr: 'Dessert français classique avec dessus de sucre caramélisé et crème à la vanille onctueuse.',
+        desc_ar: 'حلوى فرنسية كلاسيكية مع قمة سكر محمر وكاسترد الفانيليا الكريمي.'
     },
     {
         id: 18,
         title: 'Apple Pie',
+        title_fr: 'Tarte aux Pommes',
+        title_ar: 'فطيرة التفاح',
         category: 'desserts',
         price: 7.99,
         img: 'images/pancakes.jpg',
-        desc: 'Traditional apple pie with cinnamon-spiced apples and flaky crust.'
+        desc: 'Traditional apple pie with cinnamon-spiced apples and flaky crust.',
+        desc_fr: 'Tarte aux pommes traditionnelle avec pommes épicées à la cannelle et pâte feuilletée.',
+        desc_ar: 'فطيرة تفاح تقليدية مع تفاح بالقرفة وقشرة هشة.'
     },
     {
         id: 19,
         title: 'Chocolate Mousse',
+        title_fr: 'Mousse au Chocolat',
+        title_ar: 'موس الشوكولاتة',
         category: 'desserts',
         price: 6.99,
         img: 'images/chocolate-mousse.jpg',
-        desc: 'Light and airy chocolate mousse topped with fresh berries and whipped cream.'
+        desc: 'Light and airy chocolate mousse topped with fresh berries and whipped cream.',
+        desc_fr: 'Mousse au chocolat légère et aérée garnie de baies fraîches et crème fouettée.',
+        desc_ar: 'موس شوكولاتة خفيف ومنعش مغطى بالتوت الطازج والكريمة المخفوقة.'
     },
     {
         id: 20,
         title: 'Ice Cream Sundae',
+        title_fr: 'Sundae Glacé',
+        title_ar: 'سوندي آيس كريم',
         category: 'desserts',
         price: 5.99,
         img: 'images/ice-cream-sundae.jpg',
-        desc: 'Three scoops of premium ice cream with hot fudge, nuts, and cherry.'
+        desc: 'Three scoops of premium ice cream with hot fudge, nuts, and cherry.',
+        desc_fr: 'Trois boules de crème glacée premium avec sauce chocolat chaude, noix et cerise.',
+        desc_ar: 'ثلاث كرات من آيس كريم ممتاز مع صلصة الشوكولاتة الساخنة والمكسرات والكرز.'
     },
     
     // Drinks
     {
         id: 21,
         title: 'Fresh Orange Juice',
+        title_fr: 'Jus d\'Orange Frais',
+        title_ar: 'عصير برتقال طازج',
         category: 'drinks',
         price: 4.99,
         img: 'images/fresh-orange-juice.jpg',
-        desc: 'Freshly squeezed orange juice, served chilled with ice.'
+        desc: 'Freshly squeezed orange juice, served chilled with ice.',
+        desc_fr: 'Jus d\'orange fraîchement pressé, servi frais avec des glaçons.',
+        desc_ar: 'عصير برتقال طازج معصور على البارد، يقدم مع الثلج.'
     },
     {
         id: 22,
         title: 'Iced Tea',
+        title_fr: 'Thé Glacé',
+        title_ar: 'شاي مثلج',
         category: 'drinks',
         price: 3.99,
         img: 'images/fresh-orange-juice.jpg',
-        desc: 'Freshly brewed iced tea with lemon and fresh mint.'
+        desc: 'Freshly brewed iced tea with lemon and fresh mint.',
+        desc_fr: 'Thé glacé fraîchement infusé avec citron et menthe fraîche.',
+        desc_ar: 'شاي مثلج منعش حديثاً مع الليمون والنعناع الطازج.'
     },
     {
         id: 23,
         title: 'Coffee Latte',
+        title_fr: 'Café Latte',
+        title_ar: 'قهوة لاتيه',
         category: 'drinks',
         price: 5.99,
         img: 'images/coffee-latte.jpg',
-        desc: 'Espresso with steamed milk foam, topped with latte art.'
+        desc: 'Espresso with steamed milk foam, topped with latte art.',
+        desc_fr: 'Espresso avec mousse de lait vapeur, garni de latte art.',
+        desc_ar: 'إسبريسو مع رغوة الحليب البخاري، مزيّن بفن اللاتيه.'
     },
     {
         id: 24,
         title: 'Mojito',
+        title_fr: 'Mojito',
+        title_ar: 'موحيتو',
         category: 'drinks',
         price: 8.99,
         img: 'images/fresh-orange-juice.jpg',
-        desc: 'Fresh mint, lime, sugar, and white rum muddled with soda water.'
+        desc: 'Fresh mint, lime, sugar, and white rum muddled with soda water.',
+        desc_fr: 'Menthe fraîche, citron vert, sucre et rhum blanc pilonnés avec eau gazeuse.',
+        desc_ar: 'نعناع طازج، ليمون، سكر، وروم أبيض مضاف مع المياه الغازية.'
     },
     {
         id: 25,
         title: 'Smoothie Bowl',
+        title_fr: 'Bol de Smoothie',
+        title_ar: 'سلسلي بول',
         category: 'drinks',
         price: 7.99,
         img: 'images/pancakes.jpg',
-        desc: 'Blend of mixed berries, banana, yogurt, and honey with granola topping.'
+        desc: 'Blend of mixed berries, banana, yogurt, and honey with granola topping.',
+        desc_fr: 'Mélange de baies mélangées, banane, yaourt et miel avec topping granola.',
+        desc_ar: 'خليط من التوت المختلط، الموز، الزبادي، والعسل مع تغطية الجرانولا.'
     },
     {
         id: 26,
         title: 'Lemonade',
+        title_fr: 'Limonade',
+        title_ar: 'ليمونادة',
         category: 'drinks',
         price: 4.99,
         img: 'images/fresh-orange-juice.jpg',
-        desc: 'Fresh squeezed lemonade with mint and natural cane sugar.'
+        desc: 'Fresh squeezed lemonade with mint and natural cane sugar.',
+        desc_fr: 'Limonade fraîchement pressée avec menthe et sucre de canne naturel.',
+        desc_ar: 'ليمونادة طازجة معصورة مع النعناع وسكر القصب الطبيعي.'
     }
 ];
 
