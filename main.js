@@ -354,9 +354,11 @@ const menuItems = [
 
 // Display menu items
 function displayMenuItems(items) {
-    if (!menuGrid) return;
+    // Re-select menuGrid to ensure it exists
+    const menuGridEl = document.querySelector('.menu-grid');
+    if (!menuGridEl) return;
     
-    menuGrid.innerHTML = '';
+    menuGridEl.innerHTML = '';
     
     items.forEach(item => {
         const menuItem = document.createElement('div');
@@ -397,12 +399,12 @@ function displayMenuItems(items) {
             </div>
         `;
         
-        menuGrid.appendChild(menuItem);
+        menuGridEl.appendChild(menuItem);
     });
     
     // Add animation
     setTimeout(() => {
-        const menuItemElements = menuGrid.querySelectorAll('.menu-item');
+        const menuItemElements = menuGridEl.querySelectorAll('.menu-item');
         menuItemElements.forEach((item, index) => {
             setTimeout(() => {
                 item.classList.add('visible');
