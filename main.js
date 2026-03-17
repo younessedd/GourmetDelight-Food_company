@@ -23,7 +23,7 @@ const heroIndicators = document.querySelector('.hero-indicators');
 let currentSlide = 0;
 let slideInterval;
 
-// Menu Data with Realistic Food Images
+// Menu Data with Local Food Images
 const menuItems = [
     // Starters
     {
@@ -31,7 +31,7 @@ const menuItems = [
         title: 'Bruschetta',
         category: 'starters',
         price: 8.99,
-        img: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/bruschetta.jpg',
         desc: 'Toasted bread topped with fresh tomatoes, garlic, basil, and extra virgin olive oil.'
     },
     {
@@ -39,7 +39,7 @@ const menuItems = [
         title: 'Caesar Salad',
         category: 'starters',
         price: 10.99,
-        img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/caesar-salad.jpg',
         desc: 'Crisp romaine lettuce with Caesar dressing, croutons, and parmesan.'
     },
     {
@@ -47,7 +47,7 @@ const menuItems = [
         title: 'Spinach Artichoke Dip',
         category: 'starters',
         price: 9.99,
-        img: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/spinach-artichoke-dip.jpg',
         desc: 'Creamy spinach and artichoke dip served with warm pita bread.'
     },
     {
@@ -55,7 +55,7 @@ const menuItems = [
         title: 'Stuffed Mushrooms',
         category: 'starters',
         price: 11.99,
-        img: 'https://images.unsplash.com/photo-1576162219657-134095c32b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/stuffed-mushrooms.jpg',
         desc: 'Button mushrooms stuffed with herbs, cheese, and breadcrumbs.'
     },
     {
@@ -63,7 +63,7 @@ const menuItems = [
         title: 'Shrimp Cocktail',
         category: 'starters',
         price: 12.99,
-        img: 'https://images.unsplash.com/photo-1689698622690-ce30ba292b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/shrimp-cocktail.jpg',
         desc: 'Chilled shrimp with cocktail sauce, lemon, and fresh herbs.'
     },
     {
@@ -71,7 +71,7 @@ const menuItems = [
         title: 'Garlic Bread',
         category: 'starters',
         price: 7.99,
-        img: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/garlic-bread.jpg',
         desc: 'Warm garlic bread with herbs and melted mozzarella cheese.'
     },
     
@@ -81,7 +81,7 @@ const menuItems = [
         title: 'Grilled Salmon',
         category: 'mains',
         price: 24.99,
-        img: 'https://images.unsplash.com/photo-1467003909585-2cd19ce73130?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/grilled-salmon.jpg',
         desc: 'Fresh salmon fillet grilled to perfection with lemon butter sauce.'
     },
     {
@@ -89,7 +89,7 @@ const menuItems = [
         title: 'Beef Tenderloin',
         category: 'mains',
         price: 32.99,
-        img: 'https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/beef-tenderloin-alt.jpg',
         desc: 'Premium cut beef tenderloin with roasted vegetables and red wine reduction.'
     },
     {
@@ -97,7 +97,7 @@ const menuItems = [
         title: 'Chicken Parmesan',
         category: 'mains',
         price: 22.99,
-        img: 'https://images.unsplash.com/photo-1603095425989-3262b1971e01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/fried-chicken.jpg',
         desc: 'Breaded chicken breast topped with marinara sauce and melted mozzarella.'
     },
     {
@@ -105,7 +105,7 @@ const menuItems = [
         title: 'Pasta Carbonara',
         category: 'mains',
         price: 18.99,
-        img: 'https://images.unsplash.com/photo-1612879542022-2e4b0a633bdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/pasta.jpg',
         desc: 'Classic Italian pasta with eggs, pecorino cheese, and crispy pancetta.'
     },
     {
@@ -113,7 +113,7 @@ const menuItems = [
         title: 'Lobster Tail',
         category: 'mains',
         price: 36.99,
-        img: 'https://images.unsplash.com/photo-1604066879180-de71305f9362?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/sushi.jpg',
         desc: 'Fresh lobster tail with garlic butter and seasonal vegetables.'
     },
     {
@@ -121,7 +121,7 @@ const menuItems = [
         title: 'Vegetable Stir Fry',
         category: 'mains',
         price: 16.99,
-        img: 'https://images.unsplash.com/photo-1512058564366-810a673b3a4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/pizza.jpg',
         desc: 'Fresh seasonal vegetables stir-fried with ginger and soy sauce.'
     },
     {
@@ -129,7 +129,7 @@ const menuItems = [
         title: 'Ribeye Steak',
         category: 'mains',
         price: 38.99,
-        img: 'https://images.unsplash.com/photo-1546823998-b6c06c524256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/beef-tenderloin-alt.jpg',
         desc: 'Premium ribeye steak grilled to your preference with roasted garlic.'
     },
     
@@ -139,7 +139,7 @@ const menuItems = [
         title: 'Chocolate Lava Cake',
         category: 'desserts',
         price: 8.99,
-        img: 'https://images.unsplash.com/photo-1578988831306-80d814ba3c80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/chocolate-mousse.jpg',
         desc: 'Warm chocolate cake with a molten center, served with vanilla ice cream.'
     },
     {
@@ -147,7 +147,7 @@ const menuItems = [
         title: 'Tiramisu',
         category: 'desserts',
         price: 7.99,
-        img: 'https://images.unsplash.com/photo-1571877227200-a0d98ea60709?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/ice-cream-sundae.jpg',
         desc: 'Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.'
     },
     {
@@ -155,7 +155,7 @@ const menuItems = [
         title: 'Cheesecake',
         category: 'desserts',
         price: 9.99,
-        img: 'https://images.unsplash.com/photo-1528735602780-2552fd9441d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/pancakes.jpg',
         desc: 'New York style cheesecake with berry compote and fresh cream.'
     },
     {
@@ -163,7 +163,7 @@ const menuItems = [
         title: 'Crème Brûlée',
         category: 'desserts',
         price: 8.99,
-        img: 'https://images.unsplash.com/photo-1559804973-116cb75a55ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/chocolate-mousse.jpg',
         desc: 'Classic French dessert with caramelized sugar top and creamy vanilla custard.'
     },
     {
@@ -171,7 +171,7 @@ const menuItems = [
         title: 'Apple Pie',
         category: 'desserts',
         price: 7.99,
-        img: 'https://images.unsplash.com/photo-1593115042334-863926b79a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/pancakes.jpg',
         desc: 'Traditional apple pie with cinnamon-spiced apples and flaky crust.'
     },
     {
@@ -179,7 +179,7 @@ const menuItems = [
         title: 'Chocolate Mousse',
         category: 'desserts',
         price: 6.99,
-        img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/chocolate-mousse.jpg',
         desc: 'Light and airy chocolate mousse topped with fresh berries and whipped cream.'
     },
     {
@@ -187,7 +187,7 @@ const menuItems = [
         title: 'Ice Cream Sundae',
         category: 'desserts',
         price: 5.99,
-        img: 'https://images.unsplash.com/photo-1488900128323-21503983a07e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/ice-cream-sundae.jpg',
         desc: 'Three scoops of premium ice cream with hot fudge, nuts, and cherry.'
     },
     
@@ -197,7 +197,7 @@ const menuItems = [
         title: 'Fresh Orange Juice',
         category: 'drinks',
         price: 4.99,
-        img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/fresh-orange-juice.jpg',
         desc: 'Freshly squeezed orange juice, served chilled with ice.'
     },
     {
@@ -205,7 +205,7 @@ const menuItems = [
         title: 'Iced Tea',
         category: 'drinks',
         price: 3.99,
-        img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/fresh-orange-juice.jpg',
         desc: 'Freshly brewed iced tea with lemon and fresh mint.'
     },
     {
@@ -213,7 +213,7 @@ const menuItems = [
         title: 'Coffee Latte',
         category: 'drinks',
         price: 5.99,
-        img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/coffee-latte.jpg',
         desc: 'Espresso with steamed milk foam, topped with latte art.'
     },
     {
@@ -221,7 +221,7 @@ const menuItems = [
         title: 'Mojito',
         category: 'drinks',
         price: 8.99,
-        img: 'https://images.unsplash.com/photo-1551024601-b578cdd94ad7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/fresh-orange-juice.jpg',
         desc: 'Fresh mint, lime, sugar, and white rum muddled with soda water.'
     },
     {
@@ -229,7 +229,7 @@ const menuItems = [
         title: 'Smoothie Bowl',
         category: 'drinks',
         price: 7.99,
-        img: 'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/pancakes.jpg',
         desc: 'Blend of mixed berries, banana, yogurt, and honey with granola topping.'
     },
     {
@@ -237,7 +237,7 @@ const menuItems = [
         title: 'Lemonade',
         category: 'drinks',
         price: 4.99,
-        img: 'https://images.unsplash.com/photo-1544145945-f7646f5d8d6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
+        img: 'images/fresh-orange-juice.jpg',
         desc: 'Fresh squeezed lemonade with mint and natural cane sugar.'
     }
 ];
