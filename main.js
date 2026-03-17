@@ -23,7 +23,7 @@ const heroIndicators = document.querySelector('.hero-indicators');
 let currentSlide = 0;
 let slideInterval;
 
-// Menu Data with Local Food Images
+// Menu Data with Local Food Images - Updated for GitHub Pages
 const menuItems = [
     // Starters
     {
