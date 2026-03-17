@@ -35,26 +35,38 @@ const menuItems = [
     {
         id: 1,
         title: 'Bruschetta',
+        title_fr: 'Bruschetta',
+        title_ar: 'بروشيتا',
         category: 'starters',
         price: 8.99,
         img: 'images/bruschetta.jpg',
-        desc: 'Toasted bread topped with fresh tomatoes, garlic, basil, and extra virgin olive oil.'
+        desc: 'Toasted bread topped with fresh tomatoes, garlic, basil, and extra virgin olive oil.',
+        desc_fr: 'Pain grillé garni de tomates fraîches, d\'ail, de basilic et d\'huile d\'olive vierge extra.',
+        desc_ar: 'خبز محمص مغطى بالطماطم الطازجة والثوم والريحان وزيت الزيتون البكر الممتاز.'
     },
     {
         id: 2,
         title: 'Caesar Salad',
+        title_fr: 'Salade César',
+        title_ar: 'سلطة قيصر',
         category: 'starters',
         price: 10.99,
         img: 'images/caesar-salad.jpg',
-        desc: 'Crisp romaine lettuce with Caesar dressing, croutons, and parmesan.'
+        desc: 'Crisp romaine lettuce with Caesar dressing, croutons, and parmesan.',
+        desc_fr: 'Laitue romaine croustillante avec vinaigrette César, croûtons et parmesan.',
+        desc_ar: 'خس روماني مقرمش مع صلصة قيصر والكروتون وجبن البارميزان.'
     },
     {
         id: 3,
         title: 'Spinach Artichoke Dip',
+        title_fr: 'Dip aux Épinards et Artichauts',
+        title_ar: 'غمس السبانخ والخرشوف',
         category: 'starters',
         price: 9.99,
         img: 'images/spinach-artichoke-dip.jpg',
-        desc: 'Creamy spinach and artichoke dip served with warm pita bread.'
+        desc: 'Creamy spinach and artichoke dip served with warm pita bread.',
+        desc_fr: 'Dip crémeux aux épinards et artichauts servi avec du pain pita chaud.',
+        desc_ar: 'غمس كريمي بالسبانخ والخرشوف يقدم مع خبز بيتا دافئ.'
     },
     {
         id: 4,
@@ -248,14 +260,36 @@ const menuItems = [
     }
 ];
 
-// Display menu items with modern cards
+// Display menu items
 function displayMenuItems(items) {
     if (!menuGrid) return;
     
-    let displayMenu = items.map((item, index) => `
-        <div class="menu-item fade-in" data-category="${item.category}" data-id="${item.id}">
+    menuGrid.innerHTML = '';
+    
+    items.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu-item fade-in';
+        menuItem.setAttribute('data-category', item.category);
+        menuItem.setAttribute('data-id', item.id);
+        
+        // Get current language
+        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        
+        // Select appropriate title and description
+        let title = item.title;
+        let desc = item.desc;
+        
+        if (currentLang === 'fr' && item.title_fr) {
+            title = item.title_fr;
+            desc = item.desc_fr || desc;
+        } else if (currentLang === 'ar' && item.title_ar) {
+            title = item.title_ar;
+            desc = item.desc_ar || desc;
+        }
+        
+        menuItem.innerHTML = `
             <div class="menu-item-img">
-                <img src="${item.img}" alt="${item.title}" loading="lazy">
+                <img src="${item.img}" alt="${title}" loading="lazy">
                 <div class="menu-item-overlay">
                     <button class="menu-item-btn" onclick="viewMenuItem(${item.id})">
                         <i class="fas fa-eye"></i> Quick View
@@ -264,24 +298,25 @@ function displayMenuItems(items) {
             </div>
             <div class="menu-item-content">
                 <div class="menu-item-header">
-                    <h3 class="menu-item-title">${item.title}</h3>
+                    <h3 class="menu-item-title">${title}</h3>
                     <span class="menu-item-price">$${item.price.toFixed(2)}</span>
                 </div>
-                <p class="menu-item-desc">${item.desc}</p>
+                <p class="menu-item-desc">${desc}</p>
             </div>
-        </div>
-    `);
-    
-    displayMenu = displayMenu.join('');
-    menuGrid.innerHTML = displayMenu;
-    
-    // Add staggered animation to menu items
-    const menuItemElements = document.querySelectorAll('.menu-item');
-    menuItemElements.forEach((item, index) => {
-        setTimeout(() => {
-            item.classList.add('visible');
-        }, index * 100);
+        `;
+        
+        menuGrid.appendChild(menuItem);
     });
+    
+    // Add animation
+    setTimeout(() => {
+        const menuItemElements = menuGrid.querySelectorAll('.menu-item');
+        menuItemElements.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, index * 100);
+        });
+    }, 100);
 }
 
 // Filter menu items
@@ -759,6 +794,16 @@ function switchLanguage(lang) {
             btn.textContent = translation;
         }
     });
+    
+    // Refresh menu items to show correct language
+    const activeFilter = document.querySelector('.filter-btn.active');
+    const currentCategory = activeFilter ? activeFilter.dataset.filter : 'all';
+    if (currentCategory === 'all') {
+        displayMenuItems(menuItems);
+    } else {
+        const filteredItems = menuItems.filter(item => item.category === currentCategory);
+        displayMenuItems(filteredItems);
+    }
     
     // Save language preference
     localStorage.setItem('selectedLanguage', lang);
